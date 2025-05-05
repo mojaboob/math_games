@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>تمرين الجمع - Math Games</title>
+  
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f3f4f6;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+    }
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 1rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+    }
+    .content {
+      padding: 2rem;
+    }
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 1rem;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+    input {
+      font-size: 1rem;
+      padding: 0.3rem;
+    }
+    button {
+      padding: 0.4rem 0.8rem;
+      font-size: 1rem;
+      margin-right: 0.5rem;
+    }
+    .back-button {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      background-color: #10b981;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: background-color 0.3s;
+    }
+    .back-button:hover {
+      background-color: #059669;
+    }
+  </style>
+
+</head>
+<body>
+  <header><h1>تمرين الجمع</h1></header>
+  <div class="content">
+    <h2>حل المسائل التالية:</h2>
+<p>1) 5 + 3 = <input type="number" id="q1"> <button onclick="checkAnswer(1, 8)">تحقق</button> <span id="r1"></span></p>
+<p>2) 6 + 7 = <input type="number" id="q2"> <button onclick="checkAnswer(2, 13)">تحقق</button> <span id="r2"></span></p>
+<p>3) 9 + 4 = <input type="number" id="q3"> <button onclick="checkAnswer(3, 13)">تحقق</button> <span id="r3"></span></p>
+
+    <a href="practice.html" class="back-button">↩️ الرجوع إلى التدريبات</a>
+  </div>
+  <footer><p>&copy; 2025 جميع الحقوق محفوظة | تصميم الطالب محمد محاد جعبوب</p></footer>
+  <script>
+    function checkAnswer(qNum, correct) {
+      const input = document.getElementById('q' + qNum);
+      const result = document.getElementById('r' + qNum);
+      const answer = parseInt(input.value);
+      if (answer === correct) {
+        result.textContent = '✔️ صحيح';
+        result.style.color = 'green';
+        localStorage.setItem('add_q' + qNum, 'correct');
+      } else {
+        result.textContent = '❌ حاول مرة أخرى';
+        result.style.color = 'red';
+      }
+    }
+    window.onload = () => {
+      for (let i = 1; i <= 3; i++) {
+        if (localStorage.getItem('add_q' + i) === 'correct') {
+          document.getElementById('r' + i).textContent = '✔️ صحيح';
+          document.getElementById('r' + i).style.color = 'green';
+        }
+      }
+    };
+  </script>
+</body>
+</html>

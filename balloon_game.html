@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>لعبة البالونات الحسابية</title>
+  <style>
+    body {
+      font-family: 'Tahoma', sans-serif;
+      background-color: #f0fdf4;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+      text-align: center;
+    }
+    header {
+      background-color: #22c55e;
+      padding: 1rem;
+      color: white;
+    }
+    h1 {
+      font-size: 2.2rem;
+      margin: 0;
+    }
+    .game-container {
+      padding: 2rem;
+    }
+    .question-box {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .balloons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .balloon {
+      width: 100px;
+      height: 140px;
+      background-color: #34d399;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.3s;
+    }
+    .balloon:hover {
+      background-color: #059669;
+      transform: scale(1.1);
+    }
+    .result {
+      margin-top: 2rem;
+      font-size: 1.5rem;
+      color: #2563eb;
+    }
+    .back-button {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      background-color: #10b981;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: background-color 0.3s;
+    }
+    .back-button:hover {
+      background-color: #059669;
+    }
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 1rem;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>لعبة البالونات الحسابية</h1>
+    <p>أجب على 5 مسائل رياضيات متتالية!</p>
+  </header>
+
+  <div class="game-container">
+    <div class="question-box" id="question-box"></div>
+    <div class="balloons" id="balloon-container"></div>
+    <div class="result" id="result-msg"></div>
+  </div>
+  <a href="games.html" class="back-button">↩️ الرجوع إلى صفحة الألعاب</a>
+  <footer>
+    <p>&copy; 2025 Math Games</p>
+  </footer>
+
+  <script>
+    let currentQuestion = 0;
+    let correctAnswers = 0;
+    let correctAnswer = 0;
+    const totalQuestions = 5;
+
+    const questionBox = document.getElementById("question-box");
+    const balloonContainer = document.getElementById("balloon-container");
+    const resultMsg = document.getElementById("result-msg");
+
+    function generateQuestion() {
+      const num1 = Math.floor(Math.random() * 10 + 1);
+      const num2 = Math.floor(Math.random() * 10 + 1);
+      const operators = ['+', '-', '×'];
+      const op = operators[Math.floor(Math.random() * operators.length)];
+
+      let expression = "";
+      switch (op) {
+        case '+':
+          correctAnswer = num1 + num2;
+          expression = `${num1} + ${num2}`;
+          break;
+        case '-':
+          correctAnswer = num1 - num2;
+          expression = `${num1} - ${num2}`;
+          break;
+        case '×':
+          correctAnswer = num1 * num2;
+          expression = `${num1} × ${num2}`;
+          break;
+      }
+
+      questionBox.textContent = `ما ناتج: ${expression}؟`;
+
+      const options = new Set([correctAnswer]);
+      while (options.size < 4) {
+        let offset = Math.floor(Math.random() * 10 - 5);
+        if (offset === 0) offset = 1;
+        options.add(correctAnswer + offset);
+      }
+
+      balloonContainer.innerHTML = "";
+      Array.from(options).sort(() => Math.random() - 0.5).forEach((val) => {
+        const balloon = document.createElement("div");
+        balloon.className = "balloon";
+        balloon.textContent = val;
+        balloon.onclick = () => checkAnswer(val);
+        balloonContainer.appendChild(balloon);
+      });
+    }
+
+    function checkAnswer(selected) {
+      if (selected === correctAnswer) {
+        correctAnswers++;
+        resultMsg.textContent = "أحسنت! إجابة صحيحة ✅";
+        resultMsg.style.color = "green";
+      } else {
+        resultMsg.textContent = `أوه! الإجابة الصحيحة هي ${correctAnswer} ❌`;
+        resultMsg.style.color = "red";
+      }
+
+      currentQuestion++;
+
+      setTimeout(() => {
+        resultMsg.textContent = "";
+        if (currentQuestion < totalQuestions) {
+          generateQuestion();
+        } else {
+          showFinalResult();
+        }
+      }, 1500);
+    }
+
+    function showFinalResult() {
+      questionBox.textContent = "انتهت اللعبة!";
+      balloonContainer.innerHTML = "";
+      resultMsg.textContent = `أجبت بشكل صحيح على ${correctAnswers} من ${totalQuestions} ✅`;
+      resultMsg.style.color = "#2563eb";
+    }
+
+    // بدء اللعبة
+    generateQuestion();
+  </script>
+
+</body>
+</html>

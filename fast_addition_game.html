@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>لعبة الجمع السريع</title>
+  <style>
+    body {
+      font-family: 'Tahoma', sans-serif;
+      background-color: #f0fdf4;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+      text-align: center;
+    }
+    header {
+      background-color: #22c55e;
+      padding: 1rem;
+      color: white;
+    }
+    h1 {
+      font-size: 2.2rem;
+      margin: 0;
+    }
+    .game-container {
+      padding: 2rem;
+    }
+    .question-box {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .answers {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .answers button {
+      font-size: 1.2rem;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #34d399;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .answers button:hover {
+      background-color: #059669;
+    }
+    .result {
+      margin-top: 2rem;
+      font-size: 1.5rem;
+      color: #2563eb;
+    }
+    .back-button {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 1rem 2rem;
+      background-color: #10b981;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: background-color 0.3s;
+    }
+    .back-button:hover {
+      background-color: #059669;
+    }
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 1rem;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>لعبة الجمع السريع</h1>
+    <p>أجب على 5 عمليات جمع متتالية!</p>
+  </header>
+
+  <div class="game-container">
+    <div class="question-box" id="question"></div>
+    <div class="answers" id="answers"></div>
+    <div class="result" id="result-msg"></div>
+  </div>
+  <a href="games.html" class="back-button">↩️ الرجوع إلى صفحة الألعاب</a>
+
+  <footer>
+    <p>&copy; 2025 Math Games</p>
+  </footer>
+
+  <script>
+    let currentQuestion = 0;
+    let correctAnswers = 0;
+    let correctValue = 0;
+    const totalQuestions = 5;
+
+    function generateQuestion() {
+      const num1 = Math.floor(Math.random() * 10);
+      const num2 = Math.floor(Math.random() * 10);
+      correctValue = num1 + num2;
+
+      document.getElementById("question").textContent = `كم حاصل ${num1} + ${num2}؟`;
+
+      // Generate 2 wrong answers
+      let options = new Set([correctValue]);
+      while (options.size < 3) {
+        options.add(correctValue + Math.floor(Math.random() * 5 + 1) * (Math.random() < 0.5 ? -1 : 1));
+      }
+
+      const answersContainer = document.getElementById("answers");
+      answersContainer.innerHTML = "";
+      Array.from(options)
+        .sort(() => Math.random() - 0.5) // Shuffle
+        .forEach((value) => {
+          const btn = document.createElement("button");
+          btn.textContent = value;
+          btn.onclick = () => checkAnswer(value);
+          answersContainer.appendChild(btn);
+        });
+    }
+
+    function checkAnswer(selected) {
+      const resultMsg = document.getElementById("result-msg");
+
+      if (selected === correctValue) {
+        correctAnswers++;
+        resultMsg.textContent = "أحسنت! إجابة صحيحة ✅";
+        resultMsg.style.color = "green";
+      } else {
+        resultMsg.textContent = `أوه! الإجابة الصحيحة هي ${correctValue} ❌`;
+        resultMsg.style.color = "red";
+      }
+
+      currentQuestion++;
+
+      setTimeout(() => {
+        resultMsg.textContent = "";
+        if (currentQuestion < totalQuestions) {
+          generateQuestion();
+        } else {
+          showFinalResult();
+        }
+      }, 1500);
+    }
+
+    function showFinalResult() {
+      document.getElementById("question").textContent = "انتهت اللعبة!";
+      document.getElementById("answers").innerHTML = "";
+      document.getElementById("result-msg").textContent = `أجبت بشكل صحيح على ${correctAnswers} من ${totalQuestions} ✅`;
+      document.getElementById("result-msg").style.color = "#2563eb";
+    }
+
+    // Start the game
+    generateQuestion();
+  </script>
+</body>
+</html>
