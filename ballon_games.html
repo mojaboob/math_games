@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لعبة بالونات الرياضيات</title>
+    <style>
+        body {
+            font-family: 'Tahoma', sans-serif;
+            background-color: #e5e7eb;
+            margin: 0;
+            padding: 0;
+            direction: rtl;
+            text-align: center;
+        }
+        #game-container {
+            width: 550px;
+            height: 350px;
+            margin: 0 auto;
+            position: relative;
+            background-color: #e6f7ff;
+            border: 2px solid #3399ff;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .balloon {
+            position: absolute;
+            width: 60px;
+            height: 80px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: transform 0.2s;
+        }
+        .balloon:hover {
+            transform: scale(1.1);
+        }
+        #question {
+            font-size: 28px;
+            margin: 10px 0;
+            color: #0066cc;
+        }
+        #score {
+            font-size: 24px;
+            margin: 10px 0;
+            color: #ff6600;
+        }
+        #timer {
+            font-size: 20px;
+            margin: 5px 0;
+            color: #d62828;
+        }
+        #controls {
+            margin: 20px 0;
+        }
+        button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background-color: #10b981;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #level {
+            margin: 10px 0;
+            font-size: 18px;
+            color: #07790b;
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background-color: #10b981;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+        .back-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>لعبة بالونات الرياضيات</h1>
+    <div id="level">المستوى: <span id="level-value">1</span></div>
+    <div id="score">النقاط: <span id="score-value">0</span></div>
+    <div id="timer">الوقت المتبقي: <span id="timer-value">60</span> ثانية</div>
+    <div id="question"></div>
+    <div id="controls">
+        <button id="addition">جمع (+)</button>
+        <button id="subtraction">طرح (-)</button>
+        <button id="multiplication">ضرب (×)</button>
+        <button id="start">بدء اللعبة</button>
+        <button id="stop">إيقاف اللعبة</button>
+        <a href="games.html" class="back-button">↩️ الرجوع إلى صفحة الألعاب</a>
+    </div>
+    <div id="game-container"></div>
+    <script src="game.js"></script>
+</body>
+</html>

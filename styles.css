@@ -1,0 +1,399 @@
+/* التهيئة العامة */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Tahoma', sans-serif;
+}
+
+body {
+    font-family: 'Tahoma', sans-serif;
+      background-color: #f3f4f6;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #5d54a4;
+}
+
+h1 {
+    font-size: 2.3rem;
+    margin-bottom: 10px;
+    color: #ebeaee;
+}
+
+h2 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #5d54a4;
+}
+
+/* عناصر التحكم في اللعبة */
+.game-controls {
+    background-color: #f0f4ff;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.operations, .difficulties, .icons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.operation-btn, .difficulty-btn {
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #e0e7ff;
+    color: #4f46e5;
+    font-weight: bold;
+}
+
+.operation-btn.active, .difficulty-btn.active {
+    background-color: #6c63ff;
+    color: white;
+}
+
+.operation-btn:hover, .difficulty-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(108, 99, 255, 0.2);
+}
+
+.start-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2rem;
+    background-color: #6c63ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.start-btn:hover {
+    background-color: #5d54a4;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+}
+.back-button {
+       display: block;
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2rem;
+    background-color: #6c63ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    font-weight: bold;
+    }
+    .back-button:hover {
+     background-color: #5d54a4;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+    }
+/* منطقة اللعبة */
+.game-area {
+    background-color: #f8faff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.timer-score {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #5d54a4;
+}
+
+.problem-container {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.problem {
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+    min-height: 120px;
+}
+
+.visual-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    background-color: #e0e7ff;
+    border-radius: 10px;
+    min-width: 150px;
+}
+
+.visual-group span {
+    font-size: 2rem;
+    transition: transform 0.3s;
+}
+
+.visual-group span:hover {
+    transform: scale(1.2);
+}
+
+.multiplication-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin: 20px auto;
+    max-width: 300px;
+}
+
+.multiplication-cell {
+    font-size: 1.5rem;
+    padding: 5px;
+    background-color: #e0e7ff;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.number-line {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    position: relative;
+    height: 40px;
+}
+
+.number-line-segment {
+    width: 30px;
+    height: 2px;
+    background-color: #6c63ff;
+    margin-top: 20px;
+    position: relative;
+}
+
+.number-line-segment::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 0;
+    width: 2px;
+    height: 16px;
+    background-color: #6c63ff;
+}
+
+.number-line-arrow {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 15px solid #6c63ff;
+    position: absolute;
+    right: -15px;
+    top: 2px;
+}
+
+.answer-section {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.answer-section input {
+    font-size: 1.5rem;
+    width: 120px;
+    text-align: center;
+    border: 2px solid #6c63ff;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.answer-section button {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    background-color: #6c63ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.answer-section button:hover {
+    background-color: #5d54a4;
+}
+
+.feedback {
+    text-align: center;
+    font-size: 1.5rem;
+    min-height: 40px;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.correct {
+    background-color: #e6ffed;
+    color: #2e7d32;
+}
+
+.incorrect {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+.icon-selector .icons span {
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: 20px;
+    background-color: #e0e7ff;
+    transition: all 0.3s;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.icon-selector .icons span:hover {
+    background-color: #d1d9ff;
+    transform: translateY(-3px);
+}
+
+/* نهاية اللعبة */
+.game-over {
+    text-align: center;
+    background-color: #f8faff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    margin-top: 20px;
+}
+
+.game-over h2 {
+    font-size: 2rem;
+    color: #6c63ff;
+    margin-bottom: 20px;
+}
+
+.play-again-btn {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    background-color: #6c63ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.play-again-btn:hover {
+    background-color: #5d54a4;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+}
+
+.achievements {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.achievement-badge {
+    background-color: #e0e7ff;
+    color: #5d54a4;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* تأثيرات الحركة */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.bounce {
+    animation: bounce 0.5s;
+}
+
+@keyframes celebrate {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.celebrate {
+    animation: celebrate 0.5s;
+}
+
+/* الطبقات المخفية */
+.hidden {
+    display: none;
+}
+
+/* تصميم للهواتف */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    .problem {
+        font-size: 1.5rem;
+    }
+    
+    .visual-group {
+        min-width: 120px;
+        padding: 10px;
+    }
+    
+    .multiplication-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

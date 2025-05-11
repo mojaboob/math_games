@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لعبة الرياضيات المصورة</title>
+    <link rel="stylesheet" href="styles.css"> 
+    <style>
+  header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+
+  .start-btn, .back-button, .play-again-btn {
+    background-color: #10b981 !important;
+  }
+
+  .start-btn:hover, .back-button:hover, .play-again-btn:hover {
+    background-color: #059669 !important;
+  }
+
+  .game-controls, .game-area, .game-over {
+    background-color: white;
+  }
+
+  body {
+    background-color: #f3f4f6;
+  }
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧮   لعبة الرياضيات المرحة 🎈</h1>
+            <p>تعلّم الرياضيات بطريقة مرئية ممتعة!</p>
+        </header>
+
+        <div class="game-controls">
+            <div class="operation-select">
+                <h2>اختر نوع المسائل:</h2>
+                <div class="operations">
+                    <button class="operation-btn active" data-operation="add">جمع (+) 🍎</button>
+                    <button class="operation-btn" data-operation="subtract">طرح (-) 🐶</button>
+                    <button class="operation-btn" data-operation="multiply">ضرب (×) ⭐</button>
+                </div>
+            </div>
+
+            <div class="difficulty-select">
+                <h2>اختر مستوى الصعوبة:</h2>
+                <div class="difficulties">
+                    <button class="difficulty-btn active" data-difficulty="easy">سهل 👶</button>
+                    <button class="difficulty-btn" data-difficulty="medium">متوسط �</button>
+                    <button class="difficulty-btn" data-difficulty="hard">صعب 🏆</button>
+                </div>
+            </div>
+
+            <div class="icon-selector">
+                <h2>اختر شكل الأشياء:</h2>
+                <div class="icons">
+                    <span data-icon="🍎">فواكه</span>
+                    <span data-icon="🐶">حيوانات</span>
+                    <span data-icon="⭐">نجوم</span>
+                    <span data-icon="⚽">ألعاب</span>
+                </div>
+            </div>
+
+            <button class="start-btn" id="startBtn">ابدأ اللعب! 🚀</button>
+             <a href="games.html" class="back-button">↩️ الرجوع إلى صفحة الألعاب</a>
+        </div>
+
+        <div class="game-area hidden">
+            <div class="timer-score">
+                <div class="timer">⏱️ الوقت: <span id="time">60</span> ثانية</div>
+                <div class="score">🏆 النقاط: <span id="score">0</span></div>
+            </div>
+
+            <div class="problem-container">
+                <div class="problem" id="problem">
+                    <!-- سيتم إضافة المحتوى ديناميكيًا -->
+                </div>
+                <div class="answer-section">
+                    <input type="number" id="answer" placeholder="    ">
+                    <button id="submitAnswer">تحقق ✓</button>
+                </div>
+            </div>
+
+            <div class="feedback" id="feedback"></div>
+        </div>
+
+        <div class="game-over hidden">
+            <h2>🎉 انتهى الوقت! 🎉</h2>
+            <p>درجتك النهائية: <span id="final-score">0</span> نقطة</p>
+            <div class="achievements" id="achievements"></div>
+            <button class="play-again-btn" id="playAgainBtn">العب مرة أخرى 🔄</button>
+           
+
+        </div>
+         
+             <a href="visual_games.html" class="play-again-btn">  اختر مسألة رياضية جديدة ↩️</a>
+       
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
